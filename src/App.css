@@ -1,0 +1,8 @@
+
+@media (max-width: 450px){
+    .responsive-bg {
+      background-color: #ff0000; /* Fondo rojo */
+      border: 1px solid black; /* Borde sólido */
+    }
+  }
+
