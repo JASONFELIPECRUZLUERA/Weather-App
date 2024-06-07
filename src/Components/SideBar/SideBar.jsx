@@ -10,8 +10,7 @@ import DateComponent from './Date'
 const SideBar = () => {
     const [locationName, setLocationName] = useState('');
     const [weatherData, setWeatherData] = useState({ temp: '', description: '', dt: '', icon: '', dailyForecasts: [] });
-
-
+    
     return (
         <div className='flex flex-col w-[459px] h-[1023px] bg-[#1E213A]'>
 
