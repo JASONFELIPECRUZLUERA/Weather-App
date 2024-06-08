@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWeather } from '../WeatherContext';
 
-
 const LocationGPS = ({ mostrarBoton }) => {
-
   const { updateWeatherData } = useWeather();
   const [geolocation, setGeolocation] = useState(null);
 
@@ -22,43 +20,53 @@ const LocationGPS = ({ mostrarBoton }) => {
   };
 
   async function getData({ latitude, longitude }) {
-    const rs = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=3bc4c9f45cf04e7a74ac17d51146bf82`);
-    const jsonRs = await rs.json();
+    const apiKey = '3bc4c9f45cf04e7a74ac17d51146bf82';
+    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-    const rs2 = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=3bc4c9f45cf04e7a74ac17d51146bf82`);
-    const jsonRs2 = await rs2.json();
+    const currentResponse = await fetch(currentWeatherUrl);
+    const currentData = await currentResponse.json();
 
+    const forecastResponse = await fetch(forecastUrl);
+    const forecastData = await forecastResponse.json();
+    
+    console.log(currentData);
+    console.log(forecastData);
 
-    if (jsonRs2.list && jsonRs2.list.length > 0 || jsonRs.name) {
-      const dailyForecasts = jsonRs2.list.filter((forecast, index) => index % 8 === 0);
+    if (forecastData.list && forecastData.list.length > 0 || currentData.name) {
+      const dailyForecasts = forecastData.list.filter((forecast, index) => index % 8 === 0);
 
       updateWeatherData({
-        city: jsonRs.name,
-        temp: (jsonRs.main.temp - 273.15).toFixed(0),
-        description: jsonRs.weather[0].description,
-        icon: jsonRs.weather[0].icon,
-        humidity: jsonRs.main.humidity,
-        visibility: jsonRs.visibility,
-        pressure: jsonRs.main.pressure,
-        speed: jsonRs.wind.speed,
-        deg: jsonRs.wind.deg,
-        dt: jsonRs.dt,
-        dailyForecasts: dailyForecasts.map(forecast => ({
-          tempMax: (forecast.main.temp_max - 273.15).toFixed(0),
-          tempMin: (forecast.main.temp_min - 273.15).toFixed(0),
+        current:{
+          temp: (currentData.main.temp).toFixed(0),
+          description: currentData.weather[0].description,
+          icon: currentData.weather[0].icon,
+          name: currentData.name,
+          humidity: currentData.main.humidity,
+          visibility: currentData.visibility,
+          pressure: currentData.main.pressure,
+          speed: currentData.wind.speed,
+          deg: currentData.wind.deg,
+          dt: currentData.dt,
+        },
+        forecast: dailyForecasts.map(forecast => ({
+          tempMax: forecast.main.temp_max.toFixed(0),
+          tempMin: forecast.main.temp_min.toFixed(0),
           dt: forecast.dt,
-          icon: forecast.weather[0].icon
-        }))
+          icon: forecast.weather[0].icon,
+        })),
       });
     }
+
   }
-  
 
   useEffect(() => {
     if (geolocation) {
       getData(geolocation);
     }
   }, [geolocation]);
+
+  
 
   return (
     <div className='flex flex-col items-center'>

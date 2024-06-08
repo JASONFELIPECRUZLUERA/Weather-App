@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from 'react'
-
-const key = '3bc4c9f45cf04e7a74ac17d51146bf82'
+import { useWeather } from '../WeatherContext';
 
 const NavBar = () => {
 
   const [openModal, setOpenModal] = useState(false);
-  const [current, setCurrent] = useState({});
-  const [forecast, setForecast] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const { searchByCity } = useWeather();
+  
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  async function getData(url, callback) {
-    const rs = await fetch(url);
-    const jsonRs = await rs.json();
-    callback(jsonRs);
-  }
-
-  useEffect(() => {
-    console.log('current');
-    console.log(current);
-    console.log('forecast');
-    console.log(forecast);
-  }, [forecast, current])
-
-  function searchByCity() {
-    getData(`https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${key}`, setCurrent);
-    getData(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${key}`, setForecast);
-  }
 
   function closeModal() {
-    searchByCity();
+    searchByCity(inputValue);
     setOpenModal(false);
   }
 
