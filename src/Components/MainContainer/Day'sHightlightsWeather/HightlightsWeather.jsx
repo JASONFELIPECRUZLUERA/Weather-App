@@ -3,9 +3,9 @@ import AirPressure from './AirPressure';
 import WindStatus from './WindStatus';
 import Humidity from './Humidity';
 import Visibility from './Visibility';
-import LocationGPS from '../../SideBar/LocationGPS';
 
-const HightlightsWeather = ({ setLocationName, setWeatherData, weatherData }) => {
+
+const HightlightsWeather = ({ weatherData }) => {
   return (
     <div>
       <span className='text-[24px] font-[700px] leading-[28.18px] text-[#E7E7EB] font-raleway'>Today's Hightlights</span>

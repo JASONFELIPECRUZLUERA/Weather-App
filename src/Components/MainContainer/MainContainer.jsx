@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
 import WeatherCard from './WeatherCard';
 import HightlightsWeather from './Day\'sHightlightsWeather/HightlightsWeather';
+import { useWeather } from '../WeatherContext';
 import LocationGPS from '../SideBar/LocationGPS';
 
+
 const MainContainer = () => {
-  const [locationName, setLocationName] = useState('');
-  const [weatherData, setWeatherData] = useState({
-    temp: '',
-    description: '',
-    icon: '',
-    humidity: '',
-    visibility: '',
-    pressure: '',
-    speed: '',
-    deg: '',
-    dt: '',
-    dailyForecasts: []
-  });
+  
+  const { weatherData } = useWeather();
 
   return (
     <div className='w-[981px] h-[1023px] bg-[#100E1D]'>
@@ -30,7 +21,7 @@ const MainContainer = () => {
           </div>
         </div>
         <WeatherCard dailyForecast={weatherData.dailyForecasts} />
-        <LocationGPS setLocationName={setLocationName} setWeatherData={setWeatherData} />
+        <LocationGPS mostrarBoton={true}/>
         <HightlightsWeather weatherData={weatherData} />
       </div>
     </div>

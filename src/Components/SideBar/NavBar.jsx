@@ -43,25 +43,30 @@ const NavBar = () => {
 
       {openModal &&
         <>
-          <div className='w-[400px] h-[1023px] bg-slate-800 absolute top-0 left-0'>
+          <div className='flex flex-col w-[400px] h-[1023px] bg-[#1E213A] absolute top-0 left-0 gap-4'>
 
-            <span onClick={() => setOpenModal(false)} className='text-white cursor-pointer'>X</span>
+            <div className='flex justify-end'>
+              <button onClick={() => setOpenModal(false)} className=' text-white bg-[#6E707A] w-6 cursor-pointer '>X</button>
+            </div>
 
-            <div className='flex flex-row'>
+            <div className='flex flex-row justify-center gap-3'>
 
-              <div>
-                <img src=''></img>
+              <div className='w-[268px] h-[48px] border border-[#E7E7EB] flex flex-row gap-3'>
 
-                <input 
+                <img src='icon-search.svg' className='w-[24px] h-[24px] mt-3 ml-3'></img>
+
+                <input
                   type="text"
+                  placeholder='search location'
                   value={inputValue}
-                  onChange={handleChange} 
-                  >
+                  onChange={handleChange}
+                  className='bg-transparent text-[#616475] focus:outline-none'
+                >
                 </input>
 
               </div>
 
-              <button onClick={() => closeModal({inputValue})} className='bg-sky-600'>Search</button>
+              <button onClick={() => closeModal({ inputValue })} className=' w-[86px] h-[48px] bg-sky-600 text-white'>Search</button>
 
             </div>
 

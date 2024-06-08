@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { LocationGPSContext } from './LocationGPS';
+import React from 'react';
 
 const ButtonGPS = () => {
 
