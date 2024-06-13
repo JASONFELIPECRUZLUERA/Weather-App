@@ -11,7 +11,7 @@ const SideBar = () => {
     const { weatherData } = useWeather();
 
     return (
-        <div className='flex flex-col w-[459px] h-[1023px] bg-[#1E213A]'>
+        <div className='flex flex-col w-[459px] h-[1023px] bg-[#1E213A] md:w-10/12'>
 
             <div className='flex flex-row'>
                 <NavBar></NavBar>

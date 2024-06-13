@@ -9,8 +9,8 @@ function App() {
 
   return (
     <>
-      <WeatherProvider> {/* Envolver App con el proveedor de contexto */}
-        <div className='flex flex-row p-0 m-0'>
+      <WeatherProvider>
+        <div className='flex flex-col md:flex-row p-0 m-0 min-h-screen'>
           <SideBar />
           <MainContainer />
         </div>
