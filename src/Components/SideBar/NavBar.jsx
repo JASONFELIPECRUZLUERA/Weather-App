@@ -25,7 +25,7 @@ const NavBar = () => {
 
       {openModal &&
         <>
-          <div className='flex flex-col w-[400px] h-[1023px] bg-[#1E213A] absolute top-0 left-0 gap-4'>
+          <div className='flex flex-col sm:w-[400px] sm:h-[1023px] w-[375px] h-[672px] sm:bg-[#1E213A] bg-[#1E213A]  absolute top-0 left-0 gap-4'>
 
             <div className='flex justify-end'>
               <button onClick={() => setOpenModal(false)} className=' text-white bg-[#6E707A] w-6 cursor-pointer '>X</button>

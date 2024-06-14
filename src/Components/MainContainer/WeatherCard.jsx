@@ -15,7 +15,7 @@ const WeatherCard = () => {
   };
 
   return (
-    <div className='flex flex-row gap-3.5 md:flex-row'>
+    <div class="grid gap-4 sm:grid-cols-5 grid-cols-2 justify-items-center gap-3.5 mb-12">
       {weatherData.forecast.map((forecast,index) => (
         <div key={index} className='flex justify-center items-center flex-col w-[120px] h-[177px] bg-[#1E213A] gap-5'>
           <span className='text-[16px] font-[500px] leading-[18.78px] text-[#E7E7EB] font-raleway'>{forecast.dt ? unixToUTC(forecast.dt) : 'Loading...'}</span>

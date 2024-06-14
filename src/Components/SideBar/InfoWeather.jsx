@@ -11,11 +11,11 @@ const InfoWeather = () => {
 
     <div className='flex flex-col justify-center items-center'>
 
-      <div className='flex flex-col h-[376px] justify-center items-center mt-[70px]'>
-        <img src={iconSrc} alt='icon-weather loading...' className='w-[202px] h-[234px] text-white'></img>
+      <div className='flex flex-col sm:h-[376px] justify-center items-center'>
+        <img src={iconSrc} alt='icon-weather loading...' className='sm:w-[202px] sm:h-[234px] w-[150px] h-[174px] text-white'></img>
       </div>
 
-      <div className='flex flex-row justify-center items-center h-[169px]'>
+      <div className='flex flex-row justify-center items-center h-[169px] w-[192px]'>
         <span className='text-[144px] font-[500px] leading-[169.06px] text-[#E7E7EB] font-raleway'>{weatherData.current.temp ? weatherData.current.temp : '...'}</span>
         <span className='text-[48px] font-[500px] leading-[56.35px] text-[#A09FB1] font-raleway'>°C</span>
       </div>

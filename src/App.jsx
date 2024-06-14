@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <WeatherProvider>
-        <div className='flex flex-col md:flex-row p-0 m-0 min-h-screen'>
+        <div className='sm:flex sm:flex-row p-0 m-0'>
           <SideBar />
           <MainContainer />
         </div>
